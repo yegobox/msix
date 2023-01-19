@@ -8,7 +8,6 @@ dependency_overrides:
     path: ..\\..\\packages\\flipper_ui\\example
   flipper_loading:
     path: ..\\..\\packages\\flipper_loading
-  flipper_ui:
-    path: ..\\..\\packages\\flipper_ui
+
   win32:
     path: ..\\win32
