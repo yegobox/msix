@@ -1,6 +1,9 @@
+// ignore_for_file: unnecessary_brace_in_string_interps
+
 import 'dart:io';
-import 'dart:convert' show HtmlEscape;
-import 'package:cli_util/cli_logging.dart' show Ansi;
+import 'dart:convert';
+import 'package:cli_util/cli_logging.dart';
+import 'package:get_it/get_it.dart';
 import 'package:path/path.dart' as path;
 
 extension StringValidations on String? {
@@ -14,6 +17,14 @@ extension StringExtensions on String {
   String get green => '${Ansi(true).green}${this}${Ansi(true).none}';
   String get blue => '${Ansi(true).blue}${this}${Ansi(true).none}';
   String get red => '${Ansi(true).red}${this}${Ansi(true).none}';
+  String get gray => '${Ansi(true).gray}${this}${Ansi(true).none}';
+}
+
+extension StringListExtensions on List<String> {
+  bool containsArgument(String arg) =>
+      any((item) => item.toLowerCase().trim() == arg);
+  bool containsArguments(List<String> args) =>
+      any((item) => args.contains(item.toLowerCase().trim()));
 }
 
 extension StringConversions on String? {
@@ -29,9 +40,9 @@ extension FileSystemEntityExtensions on FileSystemEntity {
 /// Copy directory content asynchronously
 extension DirectoryExtensions on Directory {
   Future<void> copyDirectory(Directory destination) async {
-    await for (var entity in list(recursive: false)) {
+    await for (FileSystemEntity entity in list(recursive: false)) {
       if (entity is Directory) {
-        var newDirectory = Directory(
+        Directory newDirectory = Directory(
             path.join(destination.absolute.path, path.basename(entity.path)));
         await newDirectory.create();
         await entity.absolute.copyDirectory(newDirectory);
@@ -39,6 +50,15 @@ extension DirectoryExtensions on Directory {
         await entity
             .copy(path.join(destination.path, path.basename(entity.path)));
       }
+    }
+  }
+}
+
+extension ProcessResultExtensions on ProcessResult {
+  void exitOnError() {
+    if (this.exitCode != 0) {
+      GetIt.I<Logger>().stderr(this.stdout);
+      throw this.stderr;
     }
   }
 }

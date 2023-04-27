@@ -1,5 +1,51 @@
 # Changelog
 
+## 3.11.0
+
+- add `os_min_version` configuration
+
+## 3.10.1
+
+- add [startup task](https://github.com/YehudaKremer/msix/blob/main/doc/startup_task_configuration.md) configuration
+
+## 3.9.2
+
+- update `cli_util` dependency to `0.4.0`
+
+## 3.9.1
+
+- remove padding from generated icons (fix [#179](https://github.com/YehudaKremer/msix/issues/179))
+- fix pixelated icons
+
+## 3.8.4
+
+- add `screenshot` and `issue_tracker` to the package metadata
+
+## 3.8.2
+
+- fix [#180](https://github.com/YehudaKremer/msix/issues/180)
+
+## 3.8.1
+
+- fix [#178](https://github.com/YehudaKremer/msix/issues/178)
+
+## 3.8.0
+
+- update the [Image](https://pub.dev/packages/image) dependency package to version >=4.0.0
+- added `windows_build_args` config option, see "Build configuration" documentation table for more details
+
+## 3.7.0
+
+- add full support for [SignTool](https://learn.microsoft.com/en-us/dotnet/framework/tools/signtool-exe) usage (addressing [#155](https://github.com/YehudaKremer/msix/pull/155#issue-1421291620)), see [examples page](https://github.com/YehudaKremer/msix/tree/main/example)
+
+## 3.6.6
+
+- replacing cli_dialog package with console package to solve transitive dependencies [https://github.com/timsneath/dart_console/issues/54](https://github.com/timsneath/dart_console/issues/54)
+
+## 3.6.3
+
+- fix [#134](https://github.com/YehudaKremer/msix/issues/134)
+
 ## 3.6.2
 
 - fix [#129](https://github.com/YehudaKremer/msix/issues/129)
@@ -77,7 +123,7 @@
 
 ## 3.0.0
 
-- add `publish` command and configurations, for sideloading publish (outside the microsoft store)
+- add `publish` command and configurations, for side loading publish (outside the microsoft store)
 - user asked (cli dialog) if he want to **increment version number** (if needed)
 - user asked (cli dialog) if he want to install the test certificate
 - add [toast notifications](https://github.com/YehudaKremer/msix/issues/94) configuration
